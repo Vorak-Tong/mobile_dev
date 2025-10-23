@@ -1,17 +1,16 @@
-import 'dart:io';
-
-import '../domain/quiz.dart';
+import "dart:io";
+import "../domain/quiz.dart";
 
 class QuizConsole {
   Quiz quiz;
 
   QuizConsole({required this.quiz});
 
-  void startQuiz() {
-    print('--- Welcome to the Quiz ---\n');
+  void startQuiz(){
+    print('--- Welcome to the Quiz --- \n');
 
     while(true){
-      stdout.write('Your name: ');
+      stdout.write("Your name: ");
       String? playerName = stdin.readLineSync();
 
       if(playerName == null || playerName.isEmpty){
@@ -19,35 +18,30 @@ class QuizConsole {
         break;
       }
 
-      quiz.resetAnswers();
+      Player player = quiz.getPlayer(playerName); // get or create player and if any previous answers, clear
+      player.answers.clear(); 
 
-      for (var question in quiz.questions) {
+      for(var question in quiz.questions){
         print('Question: ${question.title} - (${question.points} points)');
         print('Choices: ${question.choices}');
         stdout.write('Your answer: ');
         String? userInput = stdin.readLineSync();
 
-        // Check for null input
         if (userInput != null && userInput.isNotEmpty) {
-          Answer answer = Answer(question: question, answerChoice: userInput);
-          quiz.addAnswer(answer);
+          Answer answer = Answer(questionId: question.id, answerChoice: userInput);
+          player.addAnswer(answer);
         } else {
           print('No answer entered. Skipping question.');
         }
-
         print('');
       }
+
+      quiz.addSubmission(player);
       
-      int score = quiz.getScoreInPercentage();
-      int point = quiz.getTotalPoint();
-      quiz.savePlayerScore(playerName);
-
-      print('${playerName}, your score in percentage: $score%');
-      print('${playerName}, your score in percentage: $point');
-
-      quiz.getAllPlayerScores().forEach((name, player){
-        print('Player: ${player.name}         Score: ${player.scoreInPoints}');
-      });
+      var scores = quiz.calculateScore(playerName);
+      print('$playerName, your score: ${scores["score"]} points');
+      print('$playerName, your percentage: ${scores["percentage"]}%');
+      print('');
     }
   }
 }

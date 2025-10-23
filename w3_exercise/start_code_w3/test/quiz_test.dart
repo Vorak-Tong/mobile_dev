@@ -1,126 +1,58 @@
-// import 'package:test/test.dart';
-
-// main() {
-//   test('My first test', () {
-//     // Do something
-//     int x = 2 + 2;
-
-//     // Check something
-//     expect(x, equals(4));
-//   });
-// }
-
-import 'package:my_first_project/domain/quiz.dart';
 import 'package:test/test.dart';
+import '../lib/domain/quiz.dart';
 
-main() {
-  // Create 2 questions and the quiz
-  Question q1 =
-      Question(title: "Capital of France?", choices: ["Paris", "London", "Rome"], goodChoice: "Paris");
+void main(){
+  Question q1 = Question(
+    title: "Capital of France?", 
+    choices: ["Paris", "London", "Rome"], 
+    goodChoice: "Paris",
+    points: 50,
+  );
 
-  Question q2 =
-      Question(title: "2 + 2 = ?", choices: ["2", "4", "5"], goodChoice: "4");
+  Question q2 = Question(
+    title: "2 + 2 = ?", 
+    choices: ["2", "4", "5"], 
+    goodChoice: "4",
+    points: 50,
+  );
 
   Quiz quiz = Quiz(questions: [q1, q2]);
 
   test('All answers are good (100%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Paris");
-    Answer a2 = Answer(question: q2, answerChoice: "4");
+    Player player = Player('TestPlayer');
+    player.addAnswer(Answer(questionId: q1.id, answerChoice: "Paris"));
+    player.addAnswer(Answer(questionId: q2.id, answerChoice: "4"));
 
-    quiz.answers = [a1, a2];
+    quiz.addSubmission(player);
+    var scores = quiz.calculateScore('TestPlayer');
 
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(100));
-  });
-
-  test('All answers are quite good (50%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Paris");
-    Answer a2 = Answer(question: q2, answerChoice: "2");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(50));
-  });
-
-  test('All answers are quite good (50%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Paris");
-    Answer a2 = Answer(question: q2, answerChoice: "5");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(50));
-  });
-
-  test('All answers are quite good (50%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "London");
-    Answer a2 = Answer(question: q2, answerChoice: "4");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(50));
-  });
-
-  test('All answers are quite good (50%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Rome");
-    Answer a2 = Answer(question: q2, answerChoice: "4");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(50));
-  });
-
-  test('All answers are bad (0%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "London");
-    Answer a2 = Answer(question: q2, answerChoice: "2");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(0));
-  });
-
-  test('All answers are bad (0%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Rome");
-    Answer a2 = Answer(question: q2, answerChoice: "2");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(0));
-  });
-
-  test('All answers are bad (0%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "London");
-    Answer a2 = Answer(question: q2, answerChoice: "5");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(0));
-  });
-
-  test('All answers are bad (0%)', () {
-    // Create the answer here
-    Answer a1 = Answer(question: q1, answerChoice: "Rome");
-    Answer a2 = Answer(question: q2, answerChoice: "5");
-
-    quiz.answers = [a1, a2];
-
-    // Check something
-    expect(quiz.getScoreInPercentage(), equals(0));
+    expect(scores['percentage'], equals(100));
+    expect(scores['score'], equals(100));
   });
 
   
+  test('One good answer, One bad answer (50%)', () {
+    Player player = Player('TestPlayer2');
+    player.addAnswer(Answer(questionId: q1.id, answerChoice: "Paris"));
+    player.addAnswer(Answer(questionId: q2.id, answerChoice: "2"));
+
+    quiz.addSubmission(player);
+    var scores = quiz.calculateScore('TestPlayer2');
+
+    expect(scores['percentage'], equals(50));
+    expect(scores['score'], equals(50));
+  });
+
+  
+  test('All answers are bad (0%)', () {
+    Player player = Player('TestPlayer3');
+    player.addAnswer(Answer(questionId: q1.id, answerChoice: "London"));
+    player.addAnswer(Answer(questionId: q2.id, answerChoice: "5"));
+
+    quiz.addSubmission(player);
+    var scores = quiz.calculateScore('TestPlayer3');
+
+    expect(scores['percentage'], equals(0));
+    expect(scores['score'], equals(0));
+  });
 }
