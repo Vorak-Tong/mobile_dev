@@ -101,7 +101,7 @@ class WeatherCard extends StatelessWidget {
               right: -55,
               top: -20,
               child: CircleAvatar(
-                radius: 110,
+                radius: 85,
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -136,7 +136,7 @@ class WeatherCard extends StatelessWidget {
                         city,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -160,7 +160,7 @@ class WeatherCard extends StatelessWidget {
                       textAlign: TextAlign.end,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
