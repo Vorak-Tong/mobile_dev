@@ -31,17 +31,17 @@ enum Product{
   dart(
     'Dart', 
     'the best object language', 
-    '../assets/ex3/dart.png'
+    'assets/ex3/dart.png'
   ),
   flutter(
     'Flutter', 
     'the best mobile widget library', 
-    '../assets/ex3/flutter.png'
+    'assets/ex3/flutter.png'
   ),
   firebase(
     'Firebase', 
     'the best cloud database', 
-    '../assets/ex3/firebase.png'
+    'assets/ex3/firebase.png'
   );
 
   final String title;
