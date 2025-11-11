@@ -177,41 +177,41 @@ class WeatherCard extends StatelessWidget {
 
 enum Weather {
   cloudy(
-    '../assets/ex4/cloudy.png',
+    'assets/ex4/cloudy.png',
     LinearGradient(
       colors: [
         Color.fromARGB(255, 151, 114, 251),
-        Color.fromARGB(255, 124, 77, 255),
+        Color.fromARGB(255, 120, 70, 255),
       ],
     ),
   ),
 
   sunny(
-    '../assets/ex4/sunny.png',
+    'assets/ex4/sunny.png',
     LinearGradient(
       colors: [
         Color.fromARGB(255, 248, 91, 143),
-        Color.fromARGB(255, 250, 63, 125),
+        Color.fromARGB(255, 255, 50, 118),
       ],
     ),
   ),
 
   sunnyCloudy(
-    '../assets/ex4/sunnyCloudy.png',
+    'assets/ex4/sunnyCloudy.png',
     LinearGradient(
       colors: [
         Color.fromARGB(255, 126, 246, 218),
-        Color.fromARGB(255, 58, 220, 182),
+        Color.fromARGB(255, 62, 245, 202),
       ],
     ),
   ),
 
   veryCloudy(
-    '../assets/ex4/veryCloudy.png',
+    'assets/ex4/veryCloudy.png',
     LinearGradient(
       colors: [
         Color.fromARGB(255, 246, 169, 86),
-        Color.fromARGB(255, 249, 185, 115),
+        Color.fromARGB(255, 255, 191, 122),
       ],
     ),
   );
