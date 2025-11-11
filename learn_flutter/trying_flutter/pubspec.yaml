@@ -1,0 +1,29 @@
+name: trying_flutter
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  english_words: ^4.0.0
+  provider: ^6.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/ex3/dart.png
+    - assets/ex3/firebase.png
+    - assets/ex3/flutter.png
+    - assets/ex4/cloudy.png
+    - assets/ex4/sunny.png
+    - assets/ex4/sunnyCloudy.png
+    - assets/ex4/veryCloudy.png
