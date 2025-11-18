@@ -20,6 +20,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/
     - assets/ex3/dart.png
     - assets/ex3/firebase.png
     - assets/ex3/flutter.png
@@ -27,3 +28,4 @@ flutter:
     - assets/ex4/sunny.png
     - assets/ex4/sunnyCloudy.png
     - assets/ex4/veryCloudy.png
+    - assets/w4-s2/
