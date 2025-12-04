@@ -38,12 +38,12 @@ class _QuizAppState extends State<QuizApp> {
     currentAnswers.add(answer);
 
     if (currentQuestionIndex < myQuiz.questions.length - 1) {
-      // Go to next question
+      // go to next question
       setState(() {
         currentQuestionIndex++;
       });
     } else {
-      // Quiz Finished: Create Submission and Save to History
+      // quiz is finish and create a submission
       final submission = Submission(answers: currentAnswers);
       // myQuiz.addSubmission(submission);
 
@@ -54,7 +54,6 @@ class _QuizAppState extends State<QuizApp> {
     }
   }
 
-  // 3. Navigation Helpers
   void showHistory() {
     setState(() {
       activeScreen = 'history-screen';
