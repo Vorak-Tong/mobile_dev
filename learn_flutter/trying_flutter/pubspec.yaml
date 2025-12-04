@@ -15,6 +15,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  uuid: ^4.4.0
+  intl: ^0.19.0
   flutter_lints: ^6.0.0
 
 flutter:
@@ -30,3 +32,4 @@ flutter:
     - assets/ex4/veryCloudy.png
     - assets/w4-s2/
     - assets/season/
+    - assets/quiz-logo.png
