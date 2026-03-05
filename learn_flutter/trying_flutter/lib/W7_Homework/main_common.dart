@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:nested/nested.dart';
+import 'ui/screens/home/home_screen.dart';
 import 'ui/screens/favorite/favorite_screen.dart';
 import 'ui/screens/library/library_screen.dart';
 import 'ui/screens/settings/settings_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _currentIndex = 1;
 
-  final List<Widget> _pages = [LibraryScreen(), FavoriteScreen(), SettingsScreen()];
+  final List<Widget> _pages = [HomeScreen(), LibraryScreen(), FavoriteScreen(), SettingsScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
         body: _pages[_currentIndex],
     
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
           onTap: (index) {
             setState(() {
@@ -55,6 +57,10 @@ class _MyAppState extends State<MyApp> {
           },
           selectedItemColor: settingsState.theme.color,
           items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.library_music),
               label: 'Library',
